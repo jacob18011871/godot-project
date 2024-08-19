@@ -1,13 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd2jgktxpl1qo"]
+[gd_scene load_steps=6 format=3 uid="uid://cwurej80clsix"]
 
-[ext_resource type="Texture2D" uid="uid://b3mm0nn0n1ji5" path="res://assets/AnimationSheet.png" id="1_ubci8"]
+[ext_resource type="Texture2D" uid="uid://b3mm0nn0n1ji5" path="res://assets/AnimationSheet.png" id="1_njm00"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xtn7b"]
-atlas = ExtResource("1_ubci8")
+atlas = ExtResource("1_njm00")
 region = Rect2(0, 0, 24, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ilaa3"]
-atlas = ExtResource("1_ubci8")
+atlas = ExtResource("1_njm00")
 region = Rect2(24, 0, 24, 28)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ignio"]
