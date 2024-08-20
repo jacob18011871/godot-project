@@ -1,41 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwurej80clsix"]
+[gd_scene load_steps=4 format=3 uid="uid://cwurej80clsix"]
 
-[ext_resource type="Texture2D" uid="uid://b3mm0nn0n1ji5" path="res://assets/AnimationSheet.png" id="1_njm00"]
+[ext_resource type="PackedScene" uid="uid://bd2jgktxpl1qo" path="res://player.tscn" id="1_j0ihj"]
+[ext_resource type="Script" path="res://scripts.gd" id="2_op2hn"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xtn7b"]
-atlas = ExtResource("1_njm00")
-region = Rect2(0, 0, 24, 28)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3tsku"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ilaa3"]
-atlas = ExtResource("1_njm00")
-region = Rect2(24, 0, 24, 28)
+[node name="game" type="Node2D"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ignio"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xtn7b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ilaa3")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}]
+[node name="player" parent="." instance=ExtResource("1_j0ihj")]
+script = ExtResource("2_op2hn")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwqtp"]
-size = Vector2(10, 16)
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4.09, 4.09)
 
-[node name="player" type="CharacterBody2D"]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -1.5)
-scale = Vector2(1, 0.99)
-sprite_frames = SubResource("SpriteFrames_ignio")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.368155
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_vwqtp")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 10)
+shape = SubResource("WorldBoundaryShape2D_3tsku")
