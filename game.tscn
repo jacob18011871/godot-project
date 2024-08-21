@@ -1,21 +1,68 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwurej80clsix"]
+[gd_scene load_steps=9 format=3 uid="uid://cwurej80clsix"]
 
 [ext_resource type="PackedScene" uid="uid://bd2jgktxpl1qo" path="res://player.tscn" id="1_j0ihj"]
 [ext_resource type="Script" path="res://scripts.gd" id="2_op2hn"]
+[ext_resource type="Texture2D" uid="uid://57lwoxpw0vd8" path="res://assets/pixil-frame-0 (1).png" id="3_p7g7a"]
+[ext_resource type="Texture2D" uid="uid://bshn8r2nweae0" path="res://assets/crates_study_x2_0.png" id="3_wram8"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3tsku"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4guuq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_p7g7a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppxrp"]
+size = Vector2(20, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ofng"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wram8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="game" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_j0ihj")]
-position = Vector2(-1, 0)
+position = Vector2(0.00393486, -0.198649)
 script = ExtResource("2_op2hn")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(-0.0701523, 0)
 zoom = Vector2(4.09, 4.09)
+limit_smoothed = true
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 10)
 shape = SubResource("WorldBoundaryShape2D_3tsku")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D/CollisionShape2D"]
+position = Vector2(-28.5272, 63.6956)
+scale = Vector2(5.35766, 1.30181)
+sprite_frames = SubResource("SpriteFrames_4guuq")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(41, -1)
+shape = SubResource("RectangleShape2D_ppxrp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D2/CollisionShape2D"]
+position = Vector2(-1.90735e-06, 0.00014642)
+scale = Vector2(0.08, 0.0758343)
+sprite_frames = SubResource("SpriteFrames_8ofng")
