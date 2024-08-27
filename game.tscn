@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwurej80clsix"]
+[gd_scene load_steps=13 format=3 uid="uid://cwurej80clsix"]
 
 [ext_resource type="PackedScene" uid="uid://bd2jgktxpl1qo" path="res://player.tscn" id="1_j0ihj"]
 [ext_resource type="Script" path="res://scripts.gd" id="2_op2hn"]
 [ext_resource type="Texture2D" uid="uid://57lwoxpw0vd8" path="res://assets/pixil-frame-0 (1).png" id="3_p7g7a"]
 [ext_resource type="Texture2D" uid="uid://bshn8r2nweae0" path="res://assets/crates_study_x2_0.png" id="3_wram8"]
+[ext_resource type="PackedScene" uid="uid://ty0d1ngw6bai" path="res://killzone.tscn" id="5_vc1re"]
+[ext_resource type="Texture2D" uid="uid://bhpp2ehbmd3bc" path="res://assets/killzone bubble thing.png" id="6_7na6o"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3tsku"]
 
@@ -19,13 +21,26 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppxrp"]
-size = Vector2(20, 19)
+size = Vector2(146.314, 19)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8ofng"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_wram8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8u7tv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gf2tr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_7na6o")
 }],
 "loop": true,
 "name": &"default",
@@ -52,17 +67,66 @@ position = Vector2(0, 10)
 shape = SubResource("WorldBoundaryShape2D_3tsku")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D/CollisionShape2D"]
-position = Vector2(-28.5272, 63.6956)
-scale = Vector2(5.35766, 1.30181)
+position = Vector2(184.607, 63.6956)
+scale = Vector2(9.62034, 1.30181)
 sprite_frames = SubResource("SpriteFrames_4guuq")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="StaticBody2D4" type="StaticBody2D" parent="StaticBody2D"]
+position = Vector2(407.678, 0.0575562)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(41, -1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D4"]
+position = Vector2(104.157, -1)
 shape = SubResource("RectangleShape2D_ppxrp")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D2/CollisionShape2D"]
-position = Vector2(-1.90735e-06, 0.00014642)
-scale = Vector2(0.08, 0.0758343)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D/StaticBody2D4/CollisionShape2D"]
+position = Vector2(-5.72205e-06, -0.297492)
+scale = Vector2(0.583206, 0.0782154)
 sprite_frames = SubResource("SpriteFrames_8ofng")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="StaticBody2D"]
+position = Vector2(264, -19.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D5"]
+position = Vector2(104.157, -1)
+shape = SubResource("RectangleShape2D_ppxrp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D/StaticBody2D5/CollisionShape2D"]
+position = Vector2(-5.72205e-06, -0.297492)
+scale = Vector2(0.583206, 0.0782154)
+sprite_frames = SubResource("SpriteFrames_8ofng")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="StaticBody2D"]
+position = Vector2(98.75, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D3"]
+position = Vector2(104.157, -1)
+shape = SubResource("RectangleShape2D_ppxrp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D/StaticBody2D3/CollisionShape2D"]
+position = Vector2(-5.72205e-06, -0.297492)
+scale = Vector2(0.583206, 0.0782154)
+sprite_frames = SubResource("SpriteFrames_8ofng")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D2"]
+position = Vector2(104.157, -1)
+shape = SubResource("RectangleShape2D_ppxrp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D/StaticBody2D2/CollisionShape2D"]
+position = Vector2(-5.72205e-06, -0.297492)
+scale = Vector2(0.583206, 0.0782154)
+sprite_frames = SubResource("SpriteFrames_8ofng")
+
+[node name="killzone" parent="." instance=ExtResource("5_vc1re")]
+position = Vector2(355.636, -1.10243)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(-19.3928, 0.45697)
+shape = SubResource("CircleShape2D_8u7tv")
+one_way_collision_margin = 2.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="killzone/CollisionShape2D"]
+position = Vector2(0.10706, -0.0693679)
+scale = Vector2(0.20409, 0.200437)
+sprite_frames = SubResource("SpriteFrames_gf2tr")
